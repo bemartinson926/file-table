@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SelectAllCheckbox from './SelectAllCheckbox';
 import { titleCase } from './Helpers';
+import './FileTable.css';
 
 class FileTable extends Component {
   state = {
@@ -82,7 +83,7 @@ class FileTable extends Component {
     const { files:fileData, selectedCount, selectAllIndeterminate, selectAllChecked } = this.state;
 
     return (
-      <div>
+      <div className="table-container">
         <SelectAllCheckbox
           selectAllHandler={this.handleSelectAll}
           indeterminate={selectAllIndeterminate}
@@ -107,14 +108,21 @@ class FileTable extends Component {
               <th>Name</th>
               <th>Device</th>
               <th>Path</th>
+              <th className="status-badge"></th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
             {
               fileData.map(file => {
+                const selectedClass = file.selected ? 'selected' : null;
+                console.log(file.status)
+                const fileStatusClass = file.status === 'Available' ? 'status-badge dot-available' : 'status-badge';
+
                 return (
-                  <tr key={file.name}>
+                  <tr
+                    key={file.name}
+                    className={selectedClass}>
                     <td>
                       <input
                         onChange={(e) => this.handleFileSelection(file.name, e)}
@@ -124,6 +132,7 @@ class FileTable extends Component {
                     <td>{file.name}</td>
                     <td>{file.device}</td>
                     <td>{file.path}</td>
+                    <td><div className={fileStatusClass}></div></td>
                     <td>{file.status}</td>
                   </tr>
                 )

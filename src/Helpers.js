@@ -6,6 +6,7 @@ function titleCase(stringStatement) {
       const formattedWord = lowerCaseWord[0].toUpperCase() + lowerCaseWord.substr(1);
       return formattedWord;
     })
+    .join(' ');
 }
 
 export { titleCase };
