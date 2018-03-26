@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SelectAllCheckbox from './SelectAllCheckbox';
 import { titleCase } from './Helpers';
 import './FileTable.css';
+import { FaArrowDown } from 'react-icons/lib/fa';
 
 class FileTable extends Component {
   state = {
@@ -71,46 +72,51 @@ class FileTable extends Component {
     const formattedselectedFiles = selectedFiles.map(file => {
       return `${file.path} | ${file.device}`;
     });
-    const formattedAlert = [
-      'You selected the following files for download:',
-      ...formattedselectedFiles
-    ].join('\n');
+
+    let formattedAlert;
+    if (formattedselectedFiles.length) {
+      formattedAlert = [
+        'You selected the following files for download:',
+        ...formattedselectedFiles
+      ].join('\n');
+    } else {
+      formattedAlert = "You must select at least 1 file to be downloaded.";
+    }
 
     alert(formattedAlert);
   }
 
   render() {
     const { files:fileData, selectedCount, selectAllIndeterminate, selectAllChecked } = this.state;
+    const downloadClassNames = selectedCount ? 'download-link' : 'download-link disabled';
 
     return (
       <div className="table-container">
         <table>
           <thead>
             <tr className="action-row">
-              <th>
+              <th colSpan="4">
                 <SelectAllCheckbox
                   selectAllHandler={this.handleSelectAll}
                   indeterminate={selectAllIndeterminate}
                   selectAllChecked={selectAllChecked}
                 />
-              </th>
-              <th>
                 {
                   selectedCount ?
                   `Selected ${selectedCount}` :
                   'None Selected'
                 }
-              </th>
-              <th>
                 {
-                  selectedCount ?
-                  <a className="download-link" onClick={this.handleDownloadSelected}>Download Selected</a> :
-                  <a className="disabled">Download Selected</a>
+                  <a
+                    className={downloadClassNames}
+                    onClick={this.handleDownloadSelected}>
+                      <FaArrowDown /> Download Selected
+                  </a>
                 }
               </th>
             </tr>
             <tr>
-              <th>Select</th>
+              <th></th>
               <th>Name</th>
               <th>Device</th>
               <th>Path</th>

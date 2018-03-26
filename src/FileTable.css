@@ -35,6 +35,14 @@ tbody tr:hover {
   background: grey
 }
 
+tr.action-row input {
+  margin-right: 20px;
+}
+
+tr.action-row a {
+  margin-left: 20px;
+}
+
 a.download-link:hover {
   cursor: default;
 }
