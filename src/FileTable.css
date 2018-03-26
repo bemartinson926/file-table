@@ -8,7 +8,11 @@ table {
 }
 
 tr {
-   border: 1px solid lightgrey;
+   border: 1px solid lightgray;
+}
+
+th {
+  font-size: 1.25em;
 }
 
 .action-row {
@@ -21,7 +25,7 @@ td, th {
 }
 
 tbody tr:hover {
-  background: lightgrey;
+  background: #F5F5F5;
 }
 
 .dot-available {
@@ -32,7 +36,7 @@ tbody tr:hover {
 }
 
 .selected {
-  background: grey
+  background: #DCDCDC;
 }
 
 tr.action-row input {
@@ -48,5 +52,5 @@ a.download-link:hover {
 }
 
 a.disabled {
-  color: lightgrey;
+  color: #DCDCDC;
 }

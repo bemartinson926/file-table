@@ -1,5 +1,8 @@
-body {
+body, table, th {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+  color: #303030;
 }
