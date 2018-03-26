@@ -110,7 +110,7 @@ class FileTable extends Component {
                   <a
                     className={downloadClassNames}
                     onClick={this.handleDownloadSelected}>
-                      <FaArrowDown /> Download Selected
+                      <FaArrowDown className={downloadClassNames} /> Download Selected
                   </a>
                 }
               </th>
