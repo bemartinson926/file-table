@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 
 class FileTable extends Component {
+  state = {
+    files: this.props.fileData.map(file => {
+      file.selected = false;
+      return file;
+    })
+  }
+
   render() {
+    const { files:fileData } = this.state;
+
     return (
       <table>
         <thead>
@@ -14,15 +23,21 @@ class FileTable extends Component {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>File name</td>
-            <td>Device name</td>
-            <td>File path</td>
-            <td>File status</td>
-          </tr>
+          {
+            fileData.map(file => {
+              return (
+                <tr key={file.name}>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>{file.name}</td>
+                  <td>{file.device}</td>
+                  <td>{file.path}</td>
+                  <td>{file.status}</td>
+                </tr>
+              )
+            })
+          }
         </tbody>
       </table>
     );
