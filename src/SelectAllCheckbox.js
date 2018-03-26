@@ -12,11 +12,12 @@ class SelectAllCheckbox extends Component {
   }
 
   render() {
-    const { selectAllHandler, indeterminate } = this.props;
+    const { selectAllHandler, indeterminate, selectAllChecked } = this.props;
 
     return (
       <input
         onChange={selectAllHandler}
+        checked={selectAllChecked}
         ref={element => this.element = element}
         type="checkbox" />
     )

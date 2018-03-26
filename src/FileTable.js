@@ -8,14 +8,17 @@ class FileTable extends Component {
       return file;
     }),
     selectedCount: 0,
-    selectAllIndeterminate: false
+    selectAllIndeterminate: false,
+    selectAllChecked: false
   }
 
   handleSelectAll = (e) => {
     const isChecked = e.target.checked;
+    const previousSelectedCount = this.state.files.filter(file => file.selected).length;
+    const setAllToSelected = previousSelectedCount && (previousSelectedCount !== this.state.files.length);
     let newFiles;
 
-    if (isChecked) {
+    if (isChecked || setAllToSelected) {
       newFiles = this.state.files.map(file => {
         file.selected = true;
         return file;
@@ -32,7 +35,8 @@ class FileTable extends Component {
     this.setState({
       files: newFiles,
       selectedCount: newSelectedCount,
-      selectAllIndeterminate: newSelectedCount > 0 && newSelectedCount < newFiles.length
+      selectAllIndeterminate: newSelectedCount > 0 && newSelectedCount < newFiles.length,
+      selectAllChecked: isChecked || setAllToSelected
     })
   }
 
@@ -53,19 +57,21 @@ class FileTable extends Component {
       return {
         files: newFiles,
         selectedCount: newSelectedCount,
-        selectAllIndeterminate: newSelectedCount > 0 && newSelectedCount < newFiles.length
+        selectAllIndeterminate: newSelectedCount > 0 && newSelectedCount < newFiles.length,
+        selectAllChecked: newSelectedCount === newFiles.length
       }
     })
   }
 
   render() {
-    const { files:fileData, selectedCount, selectAllIndeterminate } = this.state;
+    const { files:fileData, selectedCount, selectAllIndeterminate, selectAllChecked } = this.state;
 
     return (
       <div>
         <SelectAllCheckbox
           selectAllHandler={this.handleSelectAll}
           indeterminate={selectAllIndeterminate}
+          selectAllChecked={selectAllChecked}
         />
         <p>
           {
