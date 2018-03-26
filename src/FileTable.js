@@ -65,6 +65,19 @@ class FileTable extends Component {
     })
   }
 
+  handleDownloadSelected = () => {
+    const selectedFiles = this.state.files.filter(file => file.selected);
+    const formattedselectedFiles = selectedFiles.map(file => {
+      return `${file.path} | ${file.device}`;
+    });
+    const formattedAlert = [
+      'You selected the following files for download:',
+      ...formattedselectedFiles
+    ].join('\n');
+
+    alert(formattedAlert);
+  }
+
   render() {
     const { files:fileData, selectedCount, selectAllIndeterminate, selectAllChecked } = this.state;
 
@@ -82,6 +95,11 @@ class FileTable extends Component {
             'None Selected'
           }
         </p>
+        {
+          selectedCount ?
+          <p onClick={this.handleDownloadSelected}>Download Selected</p> :
+          null
+        }
         <table>
           <thead>
             <tr>
