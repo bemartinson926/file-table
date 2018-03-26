@@ -128,7 +128,6 @@ class FileTable extends Component {
             {
               fileData.map(file => {
                 const selectedClass = file.selected ? 'selected' : null;
-                console.log(file.status)
                 const fileStatusClass = file.status === 'Available' ? 'status-badge dot-available' : 'status-badge';
 
                 return (
