@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import SelectAllCheckbox from './SelectAllCheckbox';
+import { titleCase } from './Helpers';
 
 class FileTable extends Component {
   state = {
     files: this.props.fileData.map(file => {
       file.selected = false;
+      file.status = titleCase(file.status);
       return file;
     }),
     selectedCount: 0,
