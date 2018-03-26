@@ -1,3 +1,8 @@
+div.table-container {
+  margin:0 auto;
+  width: 95%;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -6,11 +11,13 @@ tr {
    border: 1px solid lightgrey;
 }
 
+.action-row {
+  border: none;
+}
+
 td, th {
-  /*border: 1px solid #999;*/
   padding: 0.5rem;
   text-align: left;
-
 }
 
 tbody tr:hover {
@@ -24,7 +31,14 @@ tbody tr:hover {
   border-radius: 50%;
 }
 
-
 .selected {
   background: grey
+}
+
+a.download-link:hover {
+  cursor: default;
+}
+
+a.disabled {
+  color: lightgrey;
 }

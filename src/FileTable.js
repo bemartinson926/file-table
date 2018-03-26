@@ -84,25 +84,31 @@ class FileTable extends Component {
 
     return (
       <div className="table-container">
-        <SelectAllCheckbox
-          selectAllHandler={this.handleSelectAll}
-          indeterminate={selectAllIndeterminate}
-          selectAllChecked={selectAllChecked}
-        />
-        <p>
-          {
-            selectedCount ?
-            `Selected ${selectedCount}` :
-            'None Selected'
-          }
-        </p>
-        {
-          selectedCount ?
-          <p onClick={this.handleDownloadSelected}>Download Selected</p> :
-          null
-        }
         <table>
           <thead>
+            <tr className="action-row">
+              <th>
+                <SelectAllCheckbox
+                  selectAllHandler={this.handleSelectAll}
+                  indeterminate={selectAllIndeterminate}
+                  selectAllChecked={selectAllChecked}
+                />
+              </th>
+              <th>
+                {
+                  selectedCount ?
+                  `Selected ${selectedCount}` :
+                  'None Selected'
+                }
+              </th>
+              <th>
+                {
+                  selectedCount ?
+                  <a className="download-link" onClick={this.handleDownloadSelected}>Download Selected</a> :
+                  <a className="disabled">Download Selected</a>
+                }
+              </th>
+            </tr>
             <tr>
               <th>Select</th>
               <th>Name</th>
