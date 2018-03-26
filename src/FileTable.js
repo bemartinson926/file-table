@@ -5,41 +5,51 @@ class FileTable extends Component {
     files: this.props.fileData.map(file => {
       file.selected = false;
       return file;
-    })
+    }),
+    selectedCount: 0
   }
 
   render() {
-    const { files:fileData } = this.state;
+    const { files:fileData, selectedCount } = this.state;
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Select</th>
-            <th>Name</th>
-            <th>Device</th>
-            <th>Path</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
+      <div>
+        <p>
           {
-            fileData.map(file => {
-              return (
-                <tr key={file.name}>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                  <td>{file.name}</td>
-                  <td>{file.device}</td>
-                  <td>{file.path}</td>
-                  <td>{file.status}</td>
-                </tr>
-              )
-            })
+            selectedCount ?
+            `Selected ${selectedCount}` :
+            'None Selected'
           }
-        </tbody>
-      </table>
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Select</th>
+              <th>Name</th>
+              <th>Device</th>
+              <th>Path</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              fileData.map(file => {
+                return (
+                  <tr key={file.name}>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>{file.name}</td>
+                    <td>{file.device}</td>
+                    <td>{file.path}</td>
+                    <td>{file.status}</td>
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
